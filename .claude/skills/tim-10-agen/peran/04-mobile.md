@@ -37,4 +37,4 @@ Layar batch ini sesuai alur dan kontrak, dan build serta test lulus dengan bukti
 
 ## Berikutnya
 
-`devops batch-<n>`, setelah Backend juga selesai.
+`tech-lead batch-<n>` (mode hemat) atau `devops batch-<n>` (mode penuh), setelah Backend juga selesai.

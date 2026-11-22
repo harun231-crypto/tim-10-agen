@@ -129,7 +129,7 @@ Tanpa pengaturan apa pun, tim sudah jalan: PM memanggil tiap peran sebagai agen 
 ```
 
 Yang perlu diketahui:
-- Tiap agen menjadi instance Claude terpisah, jadi pemakaian token lebih besar. PM dibatasi paling banyak 3 agen aktif sekaligus.
+- Tiap agen menjadi instance Claude terpisah, jadi pemakaian token lebih besar. PM dibatasi paling banyak 3 agen aktif sekaligus; lihat Tips hemat.
 - Di terminal, daftar agen muncul di bawah kolom chat. Pakai panah atas/bawah untuk memilih agen, Enter untuk membuka percakapannya.
 - Sesi yang di-`/resume` tidak membawa kembali agennya. Minta PM memanggil ulang; isi kerja mereka aman di folder `tim/`.
 - Untuk mematikan, ganti nilainya jadi `"0"`.
@@ -187,9 +187,13 @@ Simpan `tim/` di git bersama kode.
 
 ## Tips hemat
 
-- Jangan minta semua peran sekaligus. PM hanya memanggil peran yang dibutuhkan langkah itu.
-- Agen rutin seperti DevOps bisa memakai model yang lebih ringan: ubah `model: inherit` jadi `model: sonnet` di file agen `tim-devops.md` (berlaku untuk cara pasang manual). Arsitek, Security, dan Tech Lead sebaiknya memakai model yang lebih kuat.
-- Serah-terima dibatasi sekitar 40 baris dan ditimpa tiap tugas. Riwayatnya ada di git.
+Sejak v2.2 tim bekerja dalam **mode hemat** secara bawaan:
+- Per batch hanya pelaksana (Mobile/Backend) lalu Tech Lead sebagai **pemeriksa gabungan** (pipeline, kriteria terima, keamanan). DevOps, QA, dan Security terpisah hanya dipakai di **mode penuh**: batch yang menyentuh uang, login, data pribadi, atau migrasi data, atau kalau kamu memintanya.
+- Perbaikan dikirim ke agen yang sama (tidak memanggil agen baru), dan agen hanya membaca bagian dokumen yang ditunjuk PM.
+- Model ditetapkan di file agen: DevOps `haiku`, peran lain `sonnet`. Minta PM memakai Opus untuk agen tertentu kalau kamu memang mau.
+- Tangkapan layar hanya untuk menilai tampilan; serah-terima paling banyak 25 baris.
+- Perubahan sangat kecil lebih murah dikerjakan tanpa tim, di sesi biasa.
+- `CLAUDE.md` proyekmu dimuat di setiap agen. Jaga tetap pendek.
 
 ## Lisensi
 

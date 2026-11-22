@@ -37,4 +37,4 @@ Respons tiap endpoint batch ini sesuai contoh di kontrak, dan test lulus dengan 
 
 ## Berikutnya
 
-`devops batch-<n>`, setelah Mobile juga selesai.
+`tech-lead batch-<n>` (mode hemat) atau `devops batch-<n>` (mode penuh), setelah Mobile juga selesai.
