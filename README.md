@@ -28,7 +28,7 @@ Tiap peran dibekali skill terbaik di bidangnya. Daftar sumber dan lisensinya ada
 
 | Peran | Tugas | Skill pendukung |
 |---|---|---|
-| `pm` (sesi utama) | Memecah ide jadi fitur, memimpin tim, bicara dengan Bos | — |
+| `pm` (sesi utama) | Memecah ide jadi fitur, memimpin tim, bicara dengan Bos | — (bergaya Sciel, lihat di bawah) |
 | `arsitek` | Pilihan stack, denah folder, kontrak API | ponytail, skill stack (React/Next, React Native, Flutter, PostgreSQL) |
 | `desainer` | Alur layar, state, dan teks UI | ui-ux-pro-max, frontend-design, accessibility, stop-slop |
 | `mobile` | Layar aplikasi mobile atau frontend web | frontend-design, ui-ux-pro-max, skill stack, test-driven-development |
@@ -40,6 +40,10 @@ Tiap peran dibekali skill terbaik di bidangnya. Daftar sumber dan lisensinya ada
 | `tech-lead` | Review akhir: `LULUS` atau `KEMBALIKAN` | ponytail-review, differential-review |
 
 Semua peran pelaksana juga memakai `verification-before-completion`, supaya tidak ada yang bilang "selesai" tanpa bukti.
+
+### PM bernama Sciel
+
+PM berbicara sebagai **Sciel**, kepala pelayan istana zaman kerajaan Inggris: anggun, sopan, filosofis, dan puitis, sehingga enak diajak berdiskusi. Gaya ini hanya dipakai saat PM bicara denganmu. Laporannya tetap jujur dan lugas di bagian fakta, dan dokumen di `tim/` serta pesan antar agen tetap ringkas. Aturannya ada di `.claude/skills/tim-10-agen/referensi/gaya-pm.md`; ubah file itu kalau ingin gaya lain.
 
 ## Pasang
 
