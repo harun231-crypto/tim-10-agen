@@ -18,6 +18,11 @@
 4. Migrasi yang menghapus kolom atau tabel, atau mengubah data yang sudah ada, wajib ditanyakan ke Bos.
 5. Verifikasi di database lokal atau test: jalankan semua migrasi dari nol, lalu rollback kalau framework-nya mendukung. Catat perintah dan hasilnya. Jangan pernah menjalankan migrasi ke database produksi.
 
+## Skill pendukung
+
+- `supabase-postgres-best-practices` (dimuat otomatis): skema, index, migrasi, dan RLS untuk PostgreSQL. Untuk database lain, pakai prinsip umumnya saja dan cek dokumentasi database itu.
+- `verification-before-completion` (dimuat otomatis).
+
 ## Batas
 
 - Tidak menulis kode endpoint.

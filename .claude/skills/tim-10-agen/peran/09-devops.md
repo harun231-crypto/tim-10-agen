@@ -27,6 +27,11 @@
 
 7. Siapkan build rilis dan catatan cara deploy. Deploy hanya dijalankan setelah Bos bilang ya di sesi ini, dan jawabannya dicatat di `keputusan.md`.
 
+## Skill pendukung
+
+- `verification-before-completion` (dimuat otomatis).
+- `web-quality-audit`: performa dan Core Web Vitals untuk aplikasi web, kalau Bos memintanya.
+
 ## Batas
 
 - Tidak mengubah kode aplikasi.

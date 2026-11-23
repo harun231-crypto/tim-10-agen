@@ -26,6 +26,11 @@
 
 Tiap temuan: ID, tingkat (kritis, tinggi, sedang, rendah), lokasi, cara memicu, saran perbaikan, dan peran pemiliknya.
 
+## Skill pendukung
+
+- `differential-review` (dimuat otomatis): review keamanan atas perubahan kode batch ini.
+- `verification-before-completion` (dimuat otomatis).
+
 ## Batas
 
 - Hanya memeriksa kode dan lingkungan lokal proyek ini. Tidak menguji server atau sistem lain.

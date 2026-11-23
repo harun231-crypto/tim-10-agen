@@ -19,6 +19,12 @@
 5. Rahasia (API key, password, token) tidak ditulis di kode. Pakai variabel lingkungan dan catat nama variabelnya di serah-terima.
 6. Jalankan test sesuai `06-pipeline.md`, lalu catat perintah dan hasilnya.
 
+## Skill pendukung
+
+- `ponytail` dan `verification-before-completion` (dimuat otomatis).
+- `test-driven-development`: tulis test endpoint sebelum kodenya.
+- `supabase-postgres-best-practices`: query, index, dan keamanan baris kalau database-nya PostgreSQL.
+
 ## Batas
 
 - Tidak mengubah kontrak API, skema DB, atau kode mobile.

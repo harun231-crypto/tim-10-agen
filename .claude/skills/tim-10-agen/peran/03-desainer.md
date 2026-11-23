@@ -20,6 +20,13 @@
    - data yang dibutuhkan, sebagai nama field (bukan endpoint)
 3. Setiap layar harus menunjuk ke fitur di `01-fitur.md`. Layar yang tidak dibutuhkan fitur mana pun masuk bagian "Usulan, belum disetujui" dan ditanyakan ke Bos.
 
+## Skill pendukung
+
+- `ui-ux-pro-max`: cari gaya, palet, pasangan font, dan pedoman UX yang cocok dengan jenis aplikasi. Usulan gaya visual tetap dipilih Bos.
+- `frontend-design`: arah visual yang khas, bukan tampilan template AI.
+- `accessibility`: kontras, ukuran target sentuh, urutan fokus, label.
+- `stop-slop`: teks di layar (tombol, pesan error, state kosong) yang tidak berbunyi seperti tulisan AI.
+
 ## Batas
 
 - Tidak menulis kode UI.

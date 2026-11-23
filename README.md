@@ -1,38 +1,49 @@
 # tim-10-agen
 
-Skill Claude Code untuk membangun aplikasi dengan **tim 10 agen**: Product Manager, Arsitek, Desainer, Mobile, Backend, Database, QA, Security, DevOps, dan Tech Lead. Kamu menjadi **Bos**: memberi arah dan mengambil keputusan.
+Skill Claude Code untuk membangun **aplikasi dan web** dengan **tim 10 agen**: Product Manager, Arsitek, Desainer, Mobile/Frontend, Backend, Database, QA, Security, DevOps, dan Tech Lead. Kamu menjadi **Bos**: cukup mengobrol dengan PM, dan PM yang memimpin tim.
 
-*A Claude Code skill that splits app development across 10 role-based agents, one fresh session per role, with file-based handoffs. Docs in Indonesian.*
+*A Claude Code skill that runs app and web development as a 10-agent team. You talk only to the PM; the PM spawns each role as an agent in its own session, relays your decisions, and reports back. Docs in Indonesian.*
 
-## Kenapa dipecah
+## Cara kerjanya
 
-Kalau satu AI disuruh mengerjakan semuanya, di fitur ketiga ia sudah lupa fitur pertama: konteksnya kepenuhan dan kodenya kusut. Di sini:
+```
+Bos ⇄ PM (sesi utama)
+        │ memanggil agen, menyampaikan jawaban Bos
+        ├── arsitek    ├── backend    ├── security
+        ├── desainer   ├── database   ├── devops
+        ├── mobile     ├── qa         └── tech-lead
+        │
+        └── semua bertukar hasil lewat folder tim/
+```
 
-- **Satu sesi untuk satu peran.** Tiap peran mulai dari konteks bersih dan hanya membaca file yang ia butuhkan, jadi lebih hemat token.
-- **Serah-terima lewat file** di folder `tim/`. Folder ini menjadi ingatan tim, bukan riwayat obrolan.
-- **Agen tidak memutuskan hal penting.** Stack, library baru, kontrak API, skema DB, biaya, keamanan, data, commit, push, dan deploy selalu ditanyakan ke Bos. Jawabanmu dicatat persis di `tim/keputusan.md`.
-- **Agen tidak boleh mengarang.** Setiap klaim harus ada buktinya: path file, output perintah, atau keputusan Bos. Yang belum pasti ditulis `BELUM DIKETAHUI`. Tech Lead menjalankan ulang test dan mengembalikan pekerjaan yang klaimnya tidak berbukti.
+- **Kamu cukup bicara dengan PM.** PM memecah idemu jadi fitur, lalu memanggil peran lain sesuai urutan kerja.
+- **Tiap agen jalan di sesinya sendiri** dengan konteks bersih. Ia hanya membaca file yang perannya butuhkan, jadi tidak ada satu sesi yang membengkak sampai lupa konteks.
+- **Agen melapor ke PM dan bisa saling kirim pesan singkat**, misalnya Reviewer ke Builder. Pesannya dibatasi: berisi tugas, paling banyak 3 putaran, dan isi panjang ditulis di file.
+- **Keputusan penting tetap di tanganmu.** Stack, library baru, kontrak API, skema DB, biaya, keamanan, data, commit, push, dan deploy selalu ditanyakan ke kamu lewat PM. Jawabanmu dicatat persis di `tim/keputusan.md`. Pesan dari agen lain tidak pernah dianggap persetujuanmu.
+- **Agen tidak boleh mengarang.** Setiap klaim harus ada buktinya: path file, output perintah, atau keputusanmu. Tech Lead menjalankan ulang test dan mengembalikan pekerjaan yang klaimnya tidak berbukti.
 
-## Sepuluh peran
+## Sepuluh peran dan skill-nya
 
-| # | Peran | Tugas |
+Tiap peran dibekali skill terbaik di bidangnya. Daftar sumber dan lisensinya ada di [SKILL-PIHAK-KETIGA.md](SKILL-PIHAK-KETIGA.md).
+
+| Peran | Tugas | Skill pendukung |
 |---|---|---|
-| 1 | `pm` | Memecah ide jadi daftar fitur dengan kriteria terima |
-| 2 | `arsitek` | Menyusun denah folder dan kontrak API |
-| 3 | `desainer` | Membuat alur tiap layar |
-| 4 | `mobile` | Membangun layar aplikasi (atau frontend web) |
-| 5 | `backend` | Membangun endpoint persis sesuai kontrak |
-| 6 | `database` | Menjaga tabel biar enggak dobel |
-| 7 | `qa` | Mencari bug sampai ketemu |
-| 8 | `security` | Menutup celah sebelum hacker menemukannya |
-| 9 | `devops` | Build dan test tiap kode yang masuk |
-| 10 | `tech-lead` | Me-review semua kerjaan; yang jelek dibalikin |
+| `pm` (sesi utama) | Memecah ide jadi fitur, memimpin tim, bicara dengan Bos | — |
+| `arsitek` | Pilihan stack, denah folder, kontrak API | ponytail, skill stack (React/Next, React Native, Flutter, PostgreSQL) |
+| `desainer` | Alur layar, state, dan teks UI | ui-ux-pro-max, frontend-design, accessibility, stop-slop |
+| `mobile` | Layar aplikasi mobile atau frontend web | frontend-design, ui-ux-pro-max, skill stack, test-driven-development |
+| `backend` | Endpoint persis sesuai kontrak | ponytail, test-driven-development, supabase-postgres-best-practices |
+| `database` | Skema dan migrasi tanpa tabel dobel | supabase-postgres-best-practices |
+| `qa` | Menguji kriteria terima, mencari bug | webapp-testing, systematic-debugging, accessibility, web-quality-audit |
+| `security` | Menutup celah keamanan | differential-review |
+| `devops` | Build, test, lint, rilis | web-quality-audit |
+| `tech-lead` | Review akhir: `LULUS` atau `KEMBALIKAN` | ponytail-review, differential-review |
 
-Ada juga `status` untuk melihat posisi tim, menjawab pertanyaan yang tertunda, dan memilih isi batch berikutnya.
+Semua peran pelaksana juga memakai `verification-before-completion`, supaya tidak ada yang bilang "selesai" tanpa bukti.
 
 ## Pasang
 
-Yang dibutuhkan: [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) dan git. Jalankan perintah di bawah dari **folder root proyekmu**.
+Yang dibutuhkan: [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) versi terbaru (`claude update`) dan git. Jalankan perintah di bawah dari **folder root proyekmu**. Skill dengan nama yang sama di proyek itu akan ditimpa.
 
 **Windows (PowerShell)**
 
@@ -40,10 +51,13 @@ Yang dibutuhkan: [Claude Code](https://docs.claude.com/en/docs/claude-code/overv
 $src = "$env:TEMP\tim-10-agen"
 Remove-Item -Recurse -Force $src -ErrorAction SilentlyContinue
 git clone --depth 1 https://github.com/harun231-crypto/tim-10-agen $src
-New-Item -ItemType Directory -Force .claude\skills | Out-Null
-Remove-Item -Recurse -Force .claude\skills\tim-10-agen -ErrorAction SilentlyContinue
-Copy-Item -Recurse "$src\.claude\skills\tim-10-agen" .claude\skills\
-Copy-Item "$src\tim.cmd", "$src\tim-peluncur.ps1", "$src\tim.sh" .
+New-Item -ItemType Directory -Force .claude\skills, .claude\agents | Out-Null
+Get-ChildItem "$src\.claude\skills" -Directory | ForEach-Object {
+  Remove-Item -Recurse -Force ".claude\skills\$($_.Name)" -ErrorAction SilentlyContinue
+  Copy-Item -Recurse $_.FullName .claude\skills\
+}
+Copy-Item -Force "$src\.claude\agents\*.md" .claude\agents\
+Copy-Item -Force "$src\tim.cmd", "$src\tim-peluncur.ps1", "$src\tim.sh" .
 Remove-Item -Recurse -Force $src
 ```
 
@@ -51,9 +65,12 @@ Remove-Item -Recurse -Force $src
 
 ```bash
 git clone --depth 1 https://github.com/harun231-crypto/tim-10-agen /tmp/tim-10-agen
-mkdir -p .claude/skills
-rm -rf .claude/skills/tim-10-agen
-cp -r /tmp/tim-10-agen/.claude/skills/tim-10-agen .claude/skills/
+mkdir -p .claude/skills .claude/agents
+for d in /tmp/tim-10-agen/.claude/skills/*/; do
+  rm -rf ".claude/skills/$(basename "$d")"
+  cp -r "$d" .claude/skills/
+done
+cp /tmp/tim-10-agen/.claude/agents/*.md .claude/agents/
 cp /tmp/tim-10-agen/tim.sh /tmp/tim-10-agen/tim.cmd /tmp/tim-10-agen/tim-peluncur.ps1 .
 chmod +x tim.sh
 rm -rf /tmp/tim-10-agen
@@ -63,63 +80,68 @@ Hasilnya:
 
 ```
 proyekmu/
-├── .claude/skills/tim-10-agen/   ← skill-nya
-├── tim.cmd, tim-peluncur.ps1     ← peluncur untuk Windows
-└── tim.sh                        ← peluncur untuk macOS, Linux, Git Bash
+├── .claude/
+│   ├── skills/tim-10-agen/   ← skill utama
+│   ├── skills/…              ← 16 skill pendukung
+│   └── agents/tim-*.md       ← 9 agen peran
+├── tim.cmd, tim-peluncur.ps1 ← peluncur mode manual (Windows)
+└── tim.sh                    ← peluncur mode manual (macOS, Linux, Git Bash)
 ```
 
-Mau dipakai di semua proyek? Salin folder `tim-10-agen` ke `~/.claude/skills/` (Windows: `%USERPROFILE%\.claude\skills\`). Peluncurnya tetap disalin ke tiap proyek.
+Mau dipakai di semua proyek? Salin isi `.claude/skills/` ke `~/.claude/skills/` dan isi `.claude/agents/` ke `~/.claude/agents/` (Windows: `%USERPROFILE%\.claude\…`).
 
 Untuk memperbarui, jalankan perintah pasang yang sama. Folder `tim/` milik proyekmu tidak tersentuh.
 
+### Opsional: agen saling mengobrol langsung
+
+Tanpa pengaturan apa pun, tim sudah jalan: PM memanggil tiap peran sebagai agen terpisah, dan agen melapor ke PM. Kalau kamu ingin agen juga bisa saling mengirim pesan dan kamu bisa membuka percakapan tiap agen, nyalakan fitur **agent teams** (masih eksperimental) untuk proyek ini saja. Buat atau lengkapi `.claude/settings.local.json` di root proyek:
+
+```json
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}
+```
+
+Yang perlu diketahui:
+- Tiap agen menjadi instance Claude terpisah, jadi pemakaian token lebih besar. PM dibatasi paling banyak 3 agen aktif sekaligus.
+- Di terminal, daftar agen muncul di bawah kolom chat. Pakai panah atas/bawah untuk memilih agen, Enter untuk membuka percakapannya.
+- Sesi yang di-`/resume` tidak membawa kembali agennya. Minta PM memanggil ulang; isi kerja mereka aman di folder `tim/`.
+- Untuk mematikan, ganti nilainya jadi `"0"`.
+
 ## Cara pakai
 
-### Dengan peluncur (disarankan)
+1. Buka terminal di root proyek, jalankan `claude`.
+2. Ketik idemu, misalnya: `/tim-10-agen buat aplikasi absensi santri berbasis web`.
+3. PM akan bertanya beberapa hal, menyusun daftar fitur, lalu meminta persetujuanmu.
+4. Setelah itu PM memanggil agen sesuai urutan kerja. Kamu cukup menjawab pertanyaan yang PM sampaikan.
+5. Mau tahu posisi tim? Ketik `/tim-10-agen status`.
+6. Sesi ditutup atau besok lanjut lagi? Jalankan `claude`, lalu ketik `lanjut`. PM membaca folder `tim/` dan melanjutkan dari sana.
 
-Dari root proyek:
+### Mode manual
+
+Kalau kamu ingin memegang tiap peran sendiri (misalnya untuk menghemat kuota, atau memakai alat lain), peluncur lama tetap bisa dipakai. Tiap peran dibuka di sesi baru satu per satu:
 
 - Windows: `.\tim` di PowerShell, atau `tim` di Command Prompt
 - macOS, Linux, Git Bash: `./tim.sh`
 
-```
-Berikutnya: arsitek
-  Daftar fitur disetujui Bos (K-001).
-Enter = mulai, ketik nama peran lain untuk ganti, q = berhenti:
-```
-
-1. Tekan **Enter**. Claude Code terbuka sebagai peran itu, dalam sesi baru.
-2. Kerjakan bersama peran itu dan jawab pertanyaannya.
-3. Setelah ia menulis serah-terima, tutup sesinya dengan `/exit` atau **Ctrl+C dua kali**.
-4. Peluncur menawarkan peran berikutnya. Tekan Enter lagi, atau ketik nama peran lain kalau mau ganti urutan.
-
-Di awal proyek (belum ada folder `tim/`), peluncur mulai dari `pm`.
-
-### Tanpa peluncur
-
-Di dalam Claude Code:
-
-- `/tim-10-agen pm`, `/tim-10-agen backend batch-1`, dan seterusnya
-- `/tim-10-agen status` untuk melihat posisi tim
-- Setelah satu peran selesai: `/clear`, lalu ketik `lanjut`. Claude membaca `tim/berikutnya.txt` dan menawarkan peran berikutnya.
-
-### Kerja paralel
-
-Mobile dan Backend boleh jalan bersamaan, begitu juga QA dan Security, serta Desainer, Database, dan DevOps di tahap perencanaan. Buka terminal kedua, jalankan `claude`, lalu panggil perannya, misalnya `/tim-10-agen backend batch-1`. Agen tidak melakukan commit, jadi dua sesi tidak saling bentrok di git. Commit dilakukan Tech Lead setelah batch lulus, dengan izinmu.
+Tekan Enter untuk mulai peran yang ditawarkan, kerjakan bersama peran itu, lalu tutup sesinya dengan `/exit`. Peluncur akan menawarkan peran berikutnya.
 
 ## Alur kerja
 
 ```
 PERENCANAAN
-pm → arsitek → desainer + database + devops → arsitek (finalisasi) → status (pilih batch)
+pm → arsitek → desainer + database + devops → arsitek (finalisasi) → pm (pilih batch)
 
 TIAP BATCH (1-3 fitur)
 database → mobile + backend → devops → qa + security → tech-lead
                                  ↑                          │
                                  └──── KEMBALIKAN ──────────┘
-LULUS → status (batch berikutnya) … → devops (rilis, setelah Bos setuju) → selesai
+LULUS → commit (setelah Bos setuju) → batch berikutnya … → devops (rilis, setelah Bos setuju)
 ```
 
-Untuk kerja kecil tidak perlu sepuluh sesi. Contohnya bug: `qa` → peran pemilik kode → `devops` → `tech-lead`.
+Untuk kerja kecil tidak perlu semua peran. Contohnya bug: `qa` → peran pemilik kode → `devops` → `tech-lead`.
 
 ## Folder `tim/`
 
@@ -133,26 +155,18 @@ Untuk kerja kecil tidak perlu sepuluh sesi. Contohnya bug: `qa` → peran pemili
 | `05-skema-db.md` | Tabel, relasi, index |
 | `06-pipeline.md` | Perintah build, test, lint |
 | `keputusan.md` | Semua keputusanmu, dikutip persis |
-| `berikutnya.txt` | Peran berikutnya (dibaca peluncur) |
+| `berikutnya.txt` | Langkah berikutnya |
 | `serah-terima/` | Hasil terakhir tiap peran |
 | `laporan/batch-n/` | Laporan DevOps, QA, Security, Tech Lead |
 
 Simpan `tim/` di git bersama kode.
 
-## Kenapa semi-otomatis, bukan otomatis penuh
-
-Peluncur sudah tahu peran berikutnya, jadi kamu tinggal menekan Enter. Tapi ia tetap berhenti sebentar di antara peran karena tiga alasan:
-
-1. Kalau semua peran dirangkai dalam satu sesi, konteksnya menumpuk lagi dan tujuan utama skill ini hilang.
-2. Banyak titik di alur kerja memang butuh keputusanmu: daftar fitur, pilihan stack, rencana, isi batch, commit, dan rilis.
-3. Kesalahan ketahuan di peran tempat ia muncul, tidak terbawa ke lima peran berikutnya sambil menghabiskan kuota.
-
 ## Tips hemat
 
-- Satu sesi untuk satu peran. Jangan lanjut ke peran lain di sesi yang sama.
-- Peran rutin seperti DevOps bisa memakai model yang lebih ringan (`/model`). Arsitek, Security, dan Tech Lead sebaiknya memakai model yang lebih kuat.
-- Serah-terima dibatasi sekitar 40 baris dan ditimpa tiap sesi. Riwayatnya ada di git.
+- Jangan minta semua peran sekaligus. PM hanya memanggil peran yang dibutuhkan langkah itu.
+- Agen rutin seperti DevOps bisa memakai model yang lebih ringan: ubah `model: inherit` jadi `model: sonnet` di `.claude/agents/tim-devops.md`. Arsitek, Security, dan Tech Lead sebaiknya memakai model yang lebih kuat.
+- Serah-terima dibatasi sekitar 40 baris dan ditimpa tiap tugas. Riwayatnya ada di git.
 
 ## Lisensi
 
-MIT. Bebas dipakai, diubah, dan dibagikan.
+`tim-10-agen`, agen di `.claude/agents/`, dan peluncur: MIT. Skill pendukung memakai lisensi pembuatnya masing-masing (MIT, Apache 2.0, BSD-3-Clause, atau CC BY-SA 4.0); lihat [SKILL-PIHAK-KETIGA.md](SKILL-PIHAK-KETIGA.md) dan file lisensi di tiap folder skill.

@@ -22,7 +22,12 @@ Keputusan `LULUS` atau `KEMBALIKAN`, lalu daftar perbaikan per peran: file, masa
 
 ## Setelah LULUS
 
-Tunjukkan ke Bos daftar file dan usulan pesan commit, lalu minta izin commit. Commit hanya setelah Bos setuju. Jangan push.
+Kirim ke PM daftar file dan usulan pesan commit; PM yang meminta izin Bos. Commit hanya setelah persetujuan Bos tercatat di `tim/keputusan.md`. Jangan push.
+
+## Skill pendukung
+
+- `verification-before-completion` dan `ponytail-review` (dimuat otomatis): klaim harus berbukti, dan kode tidak boleh berlebihan.
+- `differential-review`: kalau perubahan menyentuh login, hak akses, atau data sensitif.
 
 ## Batas
 

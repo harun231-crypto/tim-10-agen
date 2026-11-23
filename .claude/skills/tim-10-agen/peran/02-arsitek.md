@@ -29,6 +29,11 @@
 
 Hanya kalau ada permintaan dari peran lain dan Bos menyetujuinya. Naikkan versi kontrak, tulis perubahannya, lalu sebut di serah-terima peran mana yang harus menyesuaikan (biasanya Mobile dan Backend).
 
+## Skill pendukung
+
+- `ponytail` (dimuat otomatis): pilih struktur dan dependency paling sedikit yang menyelesaikan kebutuhan.
+- Sesuai stack di `tim/02-arsitektur.md`: `react-best-practices` (React/Next.js), `react-native-skills` (React Native/Expo), `flutter-apply-architecture-best-practices` (Flutter), `supabase-postgres-best-practices` (PostgreSQL).
+
 ## Batas
 
 - Tidak menulis kode fitur.

@@ -18,6 +18,13 @@
 4. Kontrak kurang atau janggal: jangan diakali di kode. Tulis permintaan ke Arsitek di serah-terima.
 5. Jalankan build dan test sesuai `06-pipeline.md`, lalu catat perintah dan hasilnya.
 
+## Skill pendukung
+
+- `ponytail` dan `verification-before-completion` (dimuat otomatis).
+- `frontend-design` dan `ui-ux-pro-max`: menerjemahkan alur layar jadi UI yang rapi tanpa gaya template AI.
+- Sesuai stack: `react-best-practices` (React/Next.js), `react-native-skills` (React Native/Expo), `flutter-apply-architecture-best-practices` (Flutter).
+- `test-driven-development`: untuk logika non-UI.
+
 ## Batas
 
 - Tidak mengubah kontrak API, kode backend, atau skema DB.
