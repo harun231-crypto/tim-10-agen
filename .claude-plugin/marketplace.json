@@ -1,0 +1,14 @@
+{
+  "name": "tim-10-agen",
+  "description": "Tim 10 agen untuk membangun aplikasi dan web dengan Claude Code, berbahasa Indonesia.",
+  "owner": {
+    "name": "harun231-crypto"
+  },
+  "plugins": [
+    {
+      "name": "tim",
+      "source": "./",
+      "description": "Tim 10 agen untuk membangun aplikasi dan web: Bos bicara dengan PM, PM memanggil arsitek, desainer, mobile/frontend, backend, database, QA, security, devops, dan tech lead. Termasuk 16 skill pendukung."
+    }
+  ]
+}

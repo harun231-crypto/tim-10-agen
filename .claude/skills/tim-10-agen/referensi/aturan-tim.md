@@ -76,5 +76,5 @@ Simpan `tim/` di git bersama kode; folder ini adalah ingatan tim. Format tiap fi
 ## Hemat token
 
 - Baca hanya file yang disebut di file peran. Untuk kode, cari dulu dengan grep atau glob, lalu buka bagian yang relevan; jangan membaca seluruh repo.
-- Muat skill pendukung hanya saat dibutuhkan, dan skill khusus stack hanya kalau stack-nya cocok dengan `tim/02-arsitektur.md`.
+- Muat skill pendukung hanya saat dibutuhkan, dan skill khusus stack hanya kalau stack-nya cocok dengan `tim/02-arsitektur.md`. Kalau tim dipasang sebagai plugin, nama skill berawalan `tim:` (misalnya `tim:ui-ux-pro-max`).
 - Serah-terima paling banyak sekitar 40 baris dan ditimpa tiap tugas. Riwayatnya ada di git.

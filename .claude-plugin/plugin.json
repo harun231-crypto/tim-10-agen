@@ -1,0 +1,32 @@
+{
+  "name": "tim",
+  "displayName": "Tim 10 Agen",
+  "version": "2.0.0",
+  "description": "Tim 10 agen untuk membangun aplikasi dan web: Bos bicara dengan PM, PM memanggil arsitek, desainer, mobile/frontend, backend, database, QA, security, devops, dan tech lead. Termasuk 16 skill pendukung.",
+  "author": {
+    "name": "harun231-crypto",
+    "url": "https://github.com/harun231-crypto"
+  },
+  "homepage": "https://github.com/harun231-crypto/tim-10-agen",
+  "repository": "https://github.com/harun231-crypto/tim-10-agen",
+  "license": "MIT",
+  "keywords": [
+    "multi-agent",
+    "web",
+    "mobile",
+    "tim",
+    "indonesia"
+  ],
+  "skills": "./.claude/skills/",
+  "agents": [
+    "./.claude/agents/tim-arsitek.md",
+    "./.claude/agents/tim-backend.md",
+    "./.claude/agents/tim-database.md",
+    "./.claude/agents/tim-desainer.md",
+    "./.claude/agents/tim-devops.md",
+    "./.claude/agents/tim-mobile.md",
+    "./.claude/agents/tim-qa.md",
+    "./.claude/agents/tim-security.md",
+    "./.claude/agents/tim-tech-lead.md"
+  ]
+}

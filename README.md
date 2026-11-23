@@ -43,7 +43,56 @@ Semua peran pelaksana juga memakai `verification-before-completion`, supaya tida
 
 ## Pasang
 
-Yang dibutuhkan: [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) versi terbaru (`claude update`) dan git. Jalankan perintah di bawah dari **folder root proyekmu**. Skill dengan nama yang sama di proyek itu akan ditimpa.
+Yang dibutuhkan: [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) versi terbaru (`claude update`).
+
+### Cara 1: sebagai plugin (disarankan)
+
+Sekali pasang, langsung bisa dipakai di semua proyek. Cara ini sama di Linux, macOS, dan Windows.
+
+Di dalam Claude Code, ketik:
+
+```
+/plugin install tim --marketplace harun231-crypto/tim-10-agen
+```
+
+Kalau perintah itu belum dikenali (Claude Code versi lama), pakai dua langkah:
+
+```
+/plugin marketplace add harun231-crypto/tim-10-agen
+/plugin install tim@tim-10-agen
+```
+
+Atau dari terminal, tanpa membuka Claude Code:
+
+```bash
+claude plugin marketplace add harun231-crypto/tim-10-agen
+claude plugin install tim@tim-10-agen
+```
+
+Setelah dipasang, semua nama berawalan `tim:`. Skill utamanya `/tim:tim-10-agen`, agennya `tim:tim-arsitek`, `tim:tim-backend`, dan seterusnya, dan skill pendukungnya `tim:ponytail`, `tim:ui-ux-pro-max`, dan seterusnya.
+
+Untuk memperbarui: `/plugin marketplace update tim-10-agen`, lalu `/reload-plugins`. Untuk mencopot: `/plugin uninstall tim@tim-10-agen`.
+
+Peluncur mode manual (`tim.sh`, `tim.cmd`) tidak ikut terpasang lewat plugin. Kalau butuh, salin dari repo ini ke root proyekmu.
+
+### Cara 2: salin manual ke proyek
+
+Kalau kamu ingin skill dan agen tinggal di dalam proyek (misalnya supaya ikut tersimpan di git tim), jalankan perintah di bawah dari **folder root proyekmu**. Skill dengan nama yang sama di proyek itu akan ditimpa. Dengan cara ini nama-namanya tanpa awalan: `/tim-10-agen`, `tim-arsitek`, `ponytail`.
+
+**Linux, macOS, atau Git Bash**
+
+```bash
+git clone --depth 1 https://github.com/harun231-crypto/tim-10-agen /tmp/tim-10-agen
+mkdir -p .claude/skills .claude/agents
+for d in /tmp/tim-10-agen/.claude/skills/*/; do
+  rm -rf ".claude/skills/$(basename "$d")"
+  cp -r "$d" .claude/skills/
+done
+cp /tmp/tim-10-agen/.claude/agents/*.md .claude/agents/
+cp /tmp/tim-10-agen/tim.sh /tmp/tim-10-agen/tim.cmd /tmp/tim-10-agen/tim-peluncur.ps1 .
+chmod +x tim.sh
+rm -rf /tmp/tim-10-agen
+```
 
 **Windows (PowerShell)**
 
@@ -61,36 +110,7 @@ Copy-Item -Force "$src\tim.cmd", "$src\tim-peluncur.ps1", "$src\tim.sh" .
 Remove-Item -Recurse -Force $src
 ```
 
-**macOS, Linux, atau Git Bash**
-
-```bash
-git clone --depth 1 https://github.com/harun231-crypto/tim-10-agen /tmp/tim-10-agen
-mkdir -p .claude/skills .claude/agents
-for d in /tmp/tim-10-agen/.claude/skills/*/; do
-  rm -rf ".claude/skills/$(basename "$d")"
-  cp -r "$d" .claude/skills/
-done
-cp /tmp/tim-10-agen/.claude/agents/*.md .claude/agents/
-cp /tmp/tim-10-agen/tim.sh /tmp/tim-10-agen/tim.cmd /tmp/tim-10-agen/tim-peluncur.ps1 .
-chmod +x tim.sh
-rm -rf /tmp/tim-10-agen
-```
-
-Hasilnya:
-
-```
-proyekmu/
-├── .claude/
-│   ├── skills/tim-10-agen/   ← skill utama
-│   ├── skills/…              ← 16 skill pendukung
-│   └── agents/tim-*.md       ← 9 agen peran
-├── tim.cmd, tim-peluncur.ps1 ← peluncur mode manual (Windows)
-└── tim.sh                    ← peluncur mode manual (macOS, Linux, Git Bash)
-```
-
-Mau dipakai di semua proyek? Salin isi `.claude/skills/` ke `~/.claude/skills/` dan isi `.claude/agents/` ke `~/.claude/agents/` (Windows: `%USERPROFILE%\.claude\…`).
-
-Untuk memperbarui, jalankan perintah pasang yang sama. Folder `tim/` milik proyekmu tidak tersentuh.
+Untuk memperbarui, jalankan perintah yang sama. Folder `tim/` milik proyekmu tidak tersentuh.
 
 ### Opsional: agen saling mengobrol langsung
 
@@ -113,10 +133,10 @@ Yang perlu diketahui:
 ## Cara pakai
 
 1. Buka terminal di root proyek, jalankan `claude`.
-2. Ketik idemu, misalnya: `/tim-10-agen buat aplikasi absensi santri berbasis web`.
+2. Ketik idemu, misalnya: `/tim:tim-10-agen buat aplikasi absensi santri berbasis web` (atau `/tim-10-agen …` kalau dipasang manual).
 3. PM akan bertanya beberapa hal, menyusun daftar fitur, lalu meminta persetujuanmu.
 4. Setelah itu PM memanggil agen sesuai urutan kerja. Kamu cukup menjawab pertanyaan yang PM sampaikan.
-5. Mau tahu posisi tim? Ketik `/tim-10-agen status`.
+5. Mau tahu posisi tim? Ketik `/tim:tim-10-agen status`.
 6. Sesi ditutup atau besok lanjut lagi? Jalankan `claude`, lalu ketik `lanjut`. PM membaca folder `tim/` dan melanjutkan dari sana.
 
 ### Mode manual
@@ -164,7 +184,7 @@ Simpan `tim/` di git bersama kode.
 ## Tips hemat
 
 - Jangan minta semua peran sekaligus. PM hanya memanggil peran yang dibutuhkan langkah itu.
-- Agen rutin seperti DevOps bisa memakai model yang lebih ringan: ubah `model: inherit` jadi `model: sonnet` di `.claude/agents/tim-devops.md`. Arsitek, Security, dan Tech Lead sebaiknya memakai model yang lebih kuat.
+- Agen rutin seperti DevOps bisa memakai model yang lebih ringan: ubah `model: inherit` jadi `model: sonnet` di file agen `tim-devops.md` (berlaku untuk cara pasang manual). Arsitek, Security, dan Tech Lead sebaiknya memakai model yang lebih kuat.
 - Serah-terima dibatasi sekitar 40 baris dan ditimpa tiap tugas. Riwayatnya ada di git.
 
 ## Lisensi

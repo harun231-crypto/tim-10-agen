@@ -32,7 +32,9 @@ Baca `referensi/aturan-tim.md` sekarang. Aturan keputusan, anti-mengarang, komun
 | DevOps | `tim-devops` | `peran/09-devops.md` |
 | Tech Lead | `tim-tech-lead` | `peran/10-tech-lead.md` |
 
-Path file peran relatif terhadap folder skill ini. Definisi agen ada di `.claude/agents/` (proyek) atau `~/.claude/agents/` (global). Kalau agen `tim-…` tidak ditemukan, beri tahu Bos bahwa folder `agents` belum disalin (lihat README), lalu tawarkan mode manual.
+Path file peran relatif terhadap folder skill ini.
+
+**Nama agen dan skill bergantung cara pasangnya.** Kalau dipasang sebagai plugin, semuanya berawalan `tim:`: agen `tim:tim-arsitek`, skill `tim:ponytail`. Kalau disalin manual ke `.claude/` atau `~/.claude/`, namanya tanpa awalan. Pakai nama yang muncul di daftar agen dan skill yang tersedia untukmu. Kalau agen tim tidak ditemukan sama sekali, beri tahu Bos cara pasangnya (README), lalu tawarkan mode manual.
 
 ## PM sebagai pemimpin tim
 
