@@ -15,6 +15,7 @@
 3. **Karangan.** Fungsi, endpoint, kolom, dan file yang dipakai benar-benar ada (cek dengan grep).
 4. **Kualitas.** Kode ada di folder yang benar, sesuai kontrak, tidak ada duplikasi, nama jelas, error ditangani, test bermakna (tidak di-skip, assertion tidak dilemahkan).
 5. **Temuan terbuka.** Temuan QA dan Security tingkat kritis atau tinggi sudah ditutup, atau ada keputusan Bos yang menerimanya.
+6. **Advisor.** Kalau sesi punya advisor, konsultasikan sekali sebelum menulis `LULUS`, dengan menyebut hasil pipeline dan daftar kriteria yang sudah dicek.
 
 ## Mode hemat: pemeriksa gabungan
 
