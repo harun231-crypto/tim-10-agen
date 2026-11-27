@@ -185,12 +185,39 @@ Untuk kerja kecil tidak perlu semua peran. Contohnya bug: `qa` → peran pemilik
 
 Simpan `tim/` di git bersama kode.
 
+## Setelan model: Sonnet bekerja, Opus menasihati (disarankan)
+
+Sejak v2.3 tim memakai **strategi advisor**: model utama Sonnet mengerjakan pekerjaan rutin, dan Opus hanya dipanggil sebagai penasihat di titik penting (memilih pendekatan, error yang berulang, sebelum menyatakan selesai). Hasilnya mendekati kualitas Opus dengan pemakaian kuota yang jauh lebih kecil daripada menjalankan Opus terus-menerus.
+
+Sekali saja, di dalam Claude Code:
+
+```
+/model sonnet
+/advisor opus
+```
+
+Kalau berhasil, muncul `Advisor set to` diikuti nama model Opus. Pilihan advisor tersimpan untuk sesi berikutnya. Kalau ingin setelan ini hanya untuk satu proyek, tulis di `.claude/settings.json` proyek itu:
+
+```json
+{
+  "model": "sonnet",
+  "advisorModel": "opus"
+}
+```
+
+Yang perlu diketahui:
+- Agen tim mewarisi advisor dari sesi PM. DevOps tetap memakai Haiku, peran lain Sonnet.
+- Advisor masih eksperimental dan butuh Claude Code versi terbaru (`claude update`). Pemakaiannya ikut dihitung dalam batas paket langgananmu.
+- Advisor membaca seluruh percakapan tiap kali dipanggil. Setelah satu batch selesai dan di-commit, jalankan `/compact` supaya sesi PM tetap ringan.
+- Kalau advisor tidak pernah muncul, periksa apakah variabel `DISABLE_TELEMETRY` menyala; variabel itu ikut mematikan advisor.
+- Untuk mematikan: `/advisor off`.
+
 ## Tips hemat
 
 Sejak v2.2 tim bekerja dalam **mode hemat** secara bawaan:
 - Per batch hanya pelaksana (Mobile/Backend) lalu Tech Lead sebagai **pemeriksa gabungan** (pipeline, kriteria terima, keamanan). DevOps, QA, dan Security terpisah hanya dipakai di **mode penuh**: batch yang menyentuh uang, login, data pribadi, atau migrasi data, atau kalau kamu memintanya.
 - Perbaikan dikirim ke agen yang sama (tidak memanggil agen baru), dan agen hanya membaca bagian dokumen yang ditunjuk PM.
-- Model ditetapkan di file agen: DevOps `haiku`, peran lain `sonnet`. Minta PM memakai Opus untuk agen tertentu kalau kamu memang mau.
+- Model ditetapkan di file agen: DevOps `haiku`, peran lain `sonnet`, dengan Opus sebagai advisor (lihat bagian di atas). Minta PM memakai Opus penuh untuk agen tertentu hanya kalau kamu memang mau.
 - Tangkapan layar hanya untuk menilai tampilan; serah-terima paling banyak 25 baris.
 - Perubahan sangat kecil lebih murah dikerjakan tanpa tim, di sesi biasa.
 - `CLAUDE.md` proyekmu dimuat di setiap agen. Jaga tetap pendek.

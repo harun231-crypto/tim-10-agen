@@ -42,7 +42,7 @@ Path file peran relatif terhadap folder skill ini.
 
 ### Memulai
 
-1. Kalau `tim/` belum ada, buat dari `referensi/templat.md`, lalu kerjakan tugas PM sendiri sesuai `peran/01-pm.md`: brief, pertanyaan ke Bos, daftar fitur, dan persetujuan Bos.
+1. Kalau `tim/` belum ada, buat dari `referensi/templat.md`, lalu kerjakan tugas PM sendiri sesuai `peran/01-pm.md`: brief, pertanyaan ke Bos, daftar fitur, dan persetujuan Bos. Di pesan pertama, tawarkan sekali setelan hemat (model Sonnet dengan advisor Opus, lihat Hemat token) kalau belum ada catatannya di `tim/keputusan.md`. Bos yang mengetik perintahnya; catat jawabannya.
 2. Kalau `tim/` sudah ada, baca `tim/keputusan.md`, `tim/berikutnya.txt`, dan serah-terima yang relevan. Sampaikan ke Bos posisi tim dalam 3–5 baris dan langkah berikutnya, lalu tunggu Bos bilang ya.
 
 ### Memanggil agen
@@ -136,7 +136,9 @@ Biaya terbesar tim adalah jumlah agen dan apa yang dibaca tiap agen baru, bukan 
 
 - **Lanjutkan, jangan panggil baru.** Perbaikan, tiket berikutnya di area yang sama, dan cek ulang dikirim ke agen yang sudah ada lewat SendMessage. Agen baru hanya untuk peran atau area baru.
 - **Prompt berisi penunjuk.** Sebut path dan bagian (`PRD.md` F13, `spec.md` §5) atau path:baris, bukan "baca seluruh dokumen". Agen membaca hanya penunjuk itu dan file perannya.
-- **Model ditetapkan di file agen**: DevOps memakai `haiku`, peran lain `sonnet`. Pakai parameter `model: opus` di tool Agent hanya kalau Bos memintanya.
+- **Sonnet bekerja, Opus menasihati.** Setelan yang disarankan untuk sesi PM: model utama Sonnet dengan advisor Opus (`/model sonnet`, lalu `/advisor opus`). Agen mewarisi advisor itu, jadi Opus hanya dipakai di titik keputusan (lihat bagian Advisor di aturan tim), bukan di setiap langkah.
+- **Model agen ditetapkan di file agen**: DevOps memakai `haiku`, peran lain `sonnet`. Pakai parameter `model: opus` di tool Agent hanya kalau Bos memintanya.
+- **Jaga sesi PM tetap pendek.** Advisor membaca ulang seluruh percakapan setiap dipanggil. Setelah batch `LULUS` dan di-commit, sarankan Bos menjalankan `/compact`; isi kerja tetap aman di `tim/`.
 - **Gambar mahal.** Tangkapan layar hanya untuk menilai tampilan; perilaku dicek lewat teks atau DOM.
 - **Bukti cukup sekali.** Pemeriksa menjalankan test sekali. Membuktikan test dengan mencabut perbaikan hanya untuk bug tingkat kritis atau tinggi.
 - **PM tidak membaca kode** dan tidak menempel isi file; cukup path.

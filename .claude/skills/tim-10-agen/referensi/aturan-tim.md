@@ -45,6 +45,15 @@ Tech Lead mengembalikan klaim tanpa bukti, sekalipun kodenya terlihat benar.
 - Tangkapan layar hanya untuk menilai tampilan; perilaku dicek lewat teks atau DOM.
 - Serah-terima paling banyak 25 baris dan ditimpa tiap tugas; riwayatnya di git.
 
+## Advisor
+
+Kalau sesi ini punya advisor (biasanya Opus, dipasang Bos dengan `/advisor opus`), agen mewarisinya. Advisor membaca seluruh percakapan setiap kali dipanggil, jadi panggil hanya di titik yang menentukan:
+- sebelum memilih pendekatan untuk tugas yang menyentuh lebih dari satu file, atau untuk keputusan rancangan (struktur folder, kontrak, skema)
+- saat error yang sama muncul dua kali
+- sebelum menyatakan tugas selesai, atau sebelum Tech Lead memutuskan `LULUS`
+
+Jangan panggil advisor untuk hal kecil (ganti nama, satu baris, membaca file). Saran advisor bukan persetujuan Bos: hal yang wajib tanya tetap ditanyakan. Kalau saran advisor bertentangan dengan bukti (output test, isi file), ikuti bukti dan tulis pertentangannya di serah-terima.
+
 ## Papan kerja `tim/`
 
 | File | Pemilik |
